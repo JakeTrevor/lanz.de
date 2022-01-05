@@ -1,0 +1,41 @@
+---
+import Nav from "../../components/Nav.astro"
+import * as fs from "fs";
+
+const {album} = Astro.request.params;
+let albumPath = import.meta.env.PUBLIC_ALBUMS + "/" + album;
+
+const images = fs.readdirSync(albumPath);
+
+albumPath = albumPath.slice(1)
+
+export async function getStaticPaths(){
+    let albums = fs.readdirSync(import.meta.env.PUBLIC_ALBUMS);
+
+    console.log("albums:")
+    console.log(albums)
+    
+    let paths = []
+    for(let item of albums){
+        paths.push({params: { album: item}});
+    }
+    return paths;
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/master.scss">
+  </head>
+  <body>
+    <h1>this is an album!</h1>
+    <h2>specifically: {album}</h2>
+    <div class="gallery">
+      {images.map(picture => <img src={albumPath + "/" + picture} class="picture" />)}
+    </div>
+    <Nav />
+  </body>
+</html>

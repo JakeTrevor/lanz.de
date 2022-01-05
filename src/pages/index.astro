@@ -1,34 +1,26 @@
 ---
-// Component Imports
-import Counter from '../components/Counter.jsx'
-const someProps = {
-  count: 0,
-}
-
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
+
+import Nav from "../components/Nav.astro"
 ---
 <html lang="en">
   <head>
+    <!-- meta links -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <style>
-      html,
-      body {
-        font-family: system-ui;
-        margin: 0;
-      }
-      body {
-        padding: 2rem;
-      }
-    </style>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <!-- style sheets -->
+    <link rel="stylesheet" href="/src/master.scss">
   </head>
-  <body>
-    <main>
-      <Counter {...someProps} client:visible>
-        <h1>Hello, React!</h1>
-      </Counter>
-    </main>
+  <body> 
+      <h1>This is the front page</h1>
+      <h2>this is a subtitle</h2>
+      <p>now we will have some links to pages</p>
+      <Nav/>
   </body>
 </html>

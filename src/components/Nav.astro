@@ -1,0 +1,10 @@
+---
+import * as fs from "fs";
+
+const albums = fs.readdirSync(import.meta.env.PUBLIC_ALBUMS)
+---
+
+<nav>
+<a href="/">Home</a>
+{albums.map(album => <a href={"/album/"+album}>{album}</a>)}
+</nav>

@@ -1,11 +1,3 @@
-# Astro + React Example
+# A responsive portfolio site
 
-```
-npm init astro -- --template framework-react
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/framework-react)
-
-This example showcases Astro working with [React](https://reactjs.org/).
-
-Write your React components as `.jsx` or `.tsx` files in your project.
+This site generates album pages responsively, according to the file structure in ./public/albums (path defined in .env). This means you can add content as you wish without needing to hard code it into the HTML, and then just regenerate the site with astro build.

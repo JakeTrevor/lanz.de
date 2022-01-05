@@ -16,3 +16,6 @@ yarn-error.log*
 
 # macOS-specific files
 .DS_Store
+
+#non-essential files from the album pages
+public/albums   
