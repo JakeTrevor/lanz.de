@@ -1,6 +1,7 @@
 ---
 import Metahead from "../components/Metahead.astro"
 import Header from "../components/Header.astro"
+import Slideshow from "../components/Slideshow.tsx"
 import PictureLinkGallery from "../components/PictureLinkGallery.astro"
 ---
 <html lang="en">
@@ -10,9 +11,9 @@ import PictureLinkGallery from "../components/PictureLinkGallery.astro"
   <body>
     <Header/>
     <section class="section" id="Willkommen">
-      <div class="slide">
-        <img src="/public/slider3.jpg" alt="..." class="slider">
-        <img src="/public/Autogramm_Lanz_Markus.png" alt="..." class="slider autograph">
+      <div class="slider">
+        <Slideshow client:load time={3000} slides={["/public/slider3.jpg", "/public/slider-dunkel.jpg"]}></Slideshow>
+        <img src="/public/Autogramm_Lanz_Markus.png" alt="..." class="autograph">
       </div>
         
       <div id="introduction">
