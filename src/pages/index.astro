@@ -1,26 +1,100 @@
 ---
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
-
-import Nav from "../components/Nav.astro"
+import Metahead from "../components/Metahead.astro"
+import Header from "../components/Header.astro"
+import PictureLinkGallery from "../components/PictureLinkGallery.astro"
 ---
 <html lang="en">
   <head>
-    <!-- meta links -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
-    <!-- style sheets -->
-    <link rel="stylesheet" href="/src/master.scss">
+    <Metahead title="Willkommen auf der offiziellen Website" styles="/src/styles/index.scss" />
   </head>
-  <body> 
-      <h1>This is the front page</h1>
-      <h2>this is a subtitle</h2>
-      <p>now we will have some links to pages</p>
-      <Nav/>
+  <body>
+    <Header/>
+    <section class="section" id="Willkommen">
+      <div class="slide">
+        <img src="/public/slider3.jpg" alt="..." class="slider">
+        <img src="/public/Autogramm_Lanz_Markus.png" alt="..." class="slider autograph">
+      </div>
+        
+      <div id="introduction">
+        <div class="innerSection">
+          <h1 id="name">Markus Lanz</h1>
+          <h3>– Journalist Moderator Fotograf Autor –</h3>
+          <p id="introduction">Willkommen auf meiner offiziellen Homepage! Hier geht es vor allem um Fotografie. Seit mehr als 15 Jahren beschäftige ich mich intensiv damit und will Ihnen hier Einblick in einige meiner Arbeiten und Studien der letzten Jahre geben. Darüber hinaus halte ich Sie hier über anstehende Bühnen- und Multivisionsshows, Veranstaltungen, neue Projekte und besondere Sendetermine auf dem Laufenden.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="Aktuelles">
+      <div class="innerSection">
+
+        <h3>Aktuelles</h3>
+        <a href="https://www.zdf.de/gesellschaft/markus-lanz" target="_blank">
+          <img src="/public/ZDF_Cornerlogo.png"/>
+        </a>
+        <h4>"LANZ & PRECHT" – Der Podcast</h4>
+        <p>
+          Immer <strong>frietags</strong>, auf allen gängigen 
+          <a href="https://lanz-precht.podigee.io/" target="_blank" class="strong">
+            Podcast-Plattformen 
+          </a>
+          und in der 
+          <a href="https://www.zdf.de/gesellschaft/markus-lanz/presse-podcast-lanz-und-precht-100.html" target="_blank" class="strong">
+            ZDF-Mediathek
+          </a>
+        </p>
+        <img class="bird" src="https://markuslanz.de/wp-content/uploads/2021/11/Greifvogel-2-1536x1024.jpg" />
+        <a href="https://www.zdf.de/gesellschaft/markus-lanz" target="_blank">
+          <img src="/public/ZDF_Cornerlogo.png"/>
+        </a>
+        <h4>“Markus Lanz” – Talkshow</h4>
+        <p><strong>
+          Dienstags
+        </strong> bis <strong>
+          donnerstags ab 22:45 Uhr // ZDF
+        </strong>
+        </p>
+        <p>Bei “Markus Lanz” begrüße ich dreimal wöchentlich Gäste aus Politik, Wirtschaft und Unterhaltung.</p>
+        <p>
+          Mehr Informationen dazu <a href="https://www.zdf.de/gesellschaft/markus-lanz" target="_blank">
+            <strong>hier</strong>
+          </a>
+        </p>
+        <div class="spacer"/>
+        <h4><strong>
+          Reportage: “Markus Lanz – Schweden ungeschminkt”
+        </strong></h4>
+        <p><a href="https://www.zdf.de/gesellschaft/markus-lanz/markus-lanz--schweden-ungeschminkt-vom-11-maerz-2021-100.html" target="_blank"><strong>(in voller Länge ansehen)</strong></a></p>
+      </div>
+    </section>
+
+    <section class="section" id="Fotoprojekte">
+      <h3>Fotoprojekte</h3>
+      <PictureLinkGallery />
+    </section>
+    <section class="section" id="Lanz-Live">
+      <h3>Vorträge und Moderation</h3>
+      <p>slideshow here.</p>
+      <h4 class="strong">Multivisionsvortrag</h4>
+      <h4>“Grönland – meine Reisen ans Ende der Welt”</h4>
+      <h4 class="strong">Trailer:</h4>
+      <p>video here</p>
+    </section>
+    <section class="section" id="Kontakt">
+      <h3>Kontakt</h3>
+      <div class="greyArea">
+        <div class="half">
+          <img id="portrait" src="/portrait.jpg" />
+          <span>Anfragen für Moderationen, Multivisionsvorträge,</span>
+          <span>Keynote Speeches oder Presse an:</span>
+          <h2>info@markuslanz.de</h2>
+          <span>Kontakt:</span>
+          <strong>Büro Markus Lanz</strong>
+          <span>c/o Lucas Raßbach</span>
+        </div>
+      </div>
+    </section>
+    <div class="footer">
+    <div class="largeDiv">this is the footer...</div>
+    </div>
   </body>
 </html>
