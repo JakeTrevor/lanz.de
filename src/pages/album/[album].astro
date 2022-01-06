@@ -1,41 +1,47 @@
 ---
-import Nav from "../../components/Nav.astro"
+//component imports
+import Header from "../../components/Header.astro"
+import Metahead from "../../components/Metahead.astro"
+
+//build-specific frontmatter
 import * as fs from "fs";
 
-const {album} = Astro.request.params;
-let albumPath = import.meta.env.PUBLIC_ALBUMS + "/" + album;
-
-const images = fs.readdirSync(albumPath);
-
-albumPath = albumPath.slice(1)
-
 export async function getStaticPaths(){
-    let albums = fs.readdirSync(import.meta.env.PUBLIC_ALBUMS);
+  let albums = fs.readdirSync(import.meta.env.PUBLIC_ALBUMS);
 
-    console.log("albums:")
+    console.log("album pages generated:")
     console.log(albums)
     
     let paths = []
     for(let item of albums){
-        paths.push({params: { album: item}});
+      paths.push({params: { album: item}});
     }
     return paths;
 }
+
+const {album} = Astro.request.params;
+
+function getImages(){
+  let albumPath = import.meta.env.PUBLIC_ALBUMS + "/" + album;
+  let images = fs.readdirSync(albumPath);
+
+  albumPath = albumPath.slice(1)
+  return images.map(picture => albumPath + "/" + picture)
+}
+
+const imagePaths = getImages()
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/src/master.scss">
+    <Metahead title ={album.toUpperCase() + " - Markus Lanz"} styles="/src/styles/album.scss"/>
   </head>
   <body>
+    <Header/>
     <h1>this is an album!</h1>
     <h2>specifically: {album}</h2>
     <div class="gallery">
-      {images.map(picture => <img src={albumPath + "/" + picture} class="picture" />)}
+      {imagePaths.map(path => <img src={path} class="picture" />)}
     </div>
-    <Nav />
   </body>
 </html>
