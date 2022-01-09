@@ -16,7 +16,7 @@ function getLinks(): albumLink[] {
     let albumPath = path + "/" + album;
     
     let img = albumPath + "/" + fs.readdirSync("." + albumPath)[0]
-    let destination = "/album/"+ album;
+    let destination = "/projekte/"+ album;
     let tooltip = "please define the format for this";
     
     return {img, destination, tooltip}
