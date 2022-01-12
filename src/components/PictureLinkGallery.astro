@@ -8,14 +8,16 @@ interface albumLink {
 }
 
 function getLinks(): albumLink[] {
-  let path = import.meta.env.PUBLIC_ALBUMS;
-  let albums = fs.readdirSync(path);
-  path = path.slice(1)
+  let location = import.meta.env.PUBLIC_ALBUMS;
+  let albums = fs.readdirSync(location);
 
   return albums.map(album =>{
-    let albumPath = path + "/" + album;
+    let albumPath = location + "/" + album;
     
-    let img = albumPath + "/" + fs.readdirSync("." + albumPath)[0]
+    let img = fs.readdirSync(albumPath)[0]
+    albumPath = albumPath.slice(8) 
+    img = albumPath+ "/" + img
+
     let destination = "/projekte/"+ album;
     let tooltip = "please define the format for this";
     

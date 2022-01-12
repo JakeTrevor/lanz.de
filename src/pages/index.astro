@@ -11,7 +11,7 @@ function getFrontPageSlides():string[] {
 
   let slides = fs.readdirSync(location);
   
-  location = location.slice(1)
+  location = location.slice(8)
   slides = slides.map(each => location + "/" + each)
   
   return slides
@@ -21,7 +21,7 @@ function getMidpagePictures():string[] {
   let location = import.meta.env.PUBLIC_MIDPAGE_PICTURES
   let slides = fs.readdirSync(location);
   
-  location = location.slice(1)
+  location = location.slice(8)
   slides = slides.map(each => location + "/" + each)
   
   return slides
@@ -32,7 +32,7 @@ function getLanzLiveSlides():string[] {
 
   let slides = fs.readdirSync(location);
   
-  location = location.slice(1)
+  location = location.slice(8)
   slides = slides.map(each => location + "/" + each)
   
   return slides

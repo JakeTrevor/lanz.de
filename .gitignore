@@ -19,5 +19,6 @@ yarn-error.log*
 
 #non-essential files from the album pages
 public
+.firebase
 .firebaserc
 firebase.json

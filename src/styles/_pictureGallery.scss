@@ -4,6 +4,10 @@
   height: 300px;
   object-fit: cover;
   margin: 10px;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(110%);
+  }
 }
 
 .gallery {
