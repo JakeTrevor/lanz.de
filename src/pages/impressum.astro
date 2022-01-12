@@ -1,11 +1,11 @@
 ---
 import Metahead from "../components/Metahead.astro"
-import Header from "../components/Header.astro"
+import Header from "../components/Header.tsx"
 import Footer from "../components/Footer.astro"
 ---
 <html lang="de">
     <Metahead title="Willkommen auf der offiziellen Website" styles="/src/styles/impressum.scss" />
-    <Header />
+    <Header client:load />
     <section>
         <h1>IMPRESSUM</h1>
 

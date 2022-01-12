@@ -1,0 +1,71 @@
+.hamburger {
+  display: none;
+  border: none;
+  background: none;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 2px 2px rgb(0 0 0 / 22%);
+  z-index: 20;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.links {
+  z-index: 40;
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  font-family: "Poppins";
+  --link-color: rgb(48, 48, 48);
+  color: var(--link-color);
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 20px;
+  --size: 0;
+  &:hover {
+    --size: 1;
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: relative;
+    height: 1px;
+    background-color: var(--link-color);
+    transform: scale(var(--size));
+    transition: transform 0.5s;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (orientation: "portrait") {
+  .hamburger {
+    padding-top: 17px;
+    display: block;
+    margin: auto;
+  }
+  .links {
+    --transform: -100%;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 2px 2px rgb(0 0 0 / 22%);
+    transform: translatey(var(--transform));
+    transform-origin: top;
+    transition: all 0.5s;
+  }
+
+  .links-container {
+    overflow: hidden;
+    transition: height 0.5s;
+  }
+
+  .true {
+    --transform: 0;
+  }
+}

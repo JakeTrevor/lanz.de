@@ -1,6 +1,6 @@
 ---
 //component imports
-import Header from "../../components/Header.astro"
+import Header from "../../components/Header.tsx"
 import Footer from "../../components/Footer.astro"
 import Metahead from "../../components/Metahead.astro"
 import PictureGallery from "../../components/PictureGallery.tsx"
@@ -41,7 +41,7 @@ const imagePaths:string[] = getImages()
     <Metahead title ={album.toUpperCase() + " - Markus Lanz"} styles="/src/styles/album.scss"/>
   </head>
   <body>
-    <Header/>
+    <Header client:load />
     <section>
     <h1>{album}!</h1>
     <div class="split">

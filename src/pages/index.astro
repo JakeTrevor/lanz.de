@@ -1,6 +1,6 @@
 ---
 import Metahead from "../components/Metahead.astro"
-import Header from "../components/Header.astro"
+import Header from "../components/Header.tsx"
 import Footer from "../components/Footer.astro"
 import Slideshow from "../components/Slideshow.tsx"
 import PictureLinkGallery from "../components/PictureLinkGallery.astro"
@@ -48,7 +48,7 @@ let lanzLiveSlides:string[] = getLanzLiveSlides()
     <Metahead title="Willkommen auf der offiziellen Website" styles="/src/styles/index.scss" />
   </head>
   <body>
-    <Header/>
+    <Header client:load/>
     <section class="section" id="Willkommen">
       <div class="slider">
         <Slideshow client:load time={3000} slides={frontPageSlides}/>

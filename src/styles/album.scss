@@ -1,5 +1,6 @@
 @use "reset";
 @use "pictureGallery";
+@use "header";
 
 * {
   text-align: left;
@@ -50,4 +51,11 @@ h3 {
 .smaller-half {
   width: 20%;
   margin-left: 20px;
+}
+
+//for mobile devices:
+@media only screen and (max-width: 1200px) and (orientation: "portrait") {
+  section {
+    padding: 40px 5% 100px;
+  }
 }

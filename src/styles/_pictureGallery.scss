@@ -1,9 +1,10 @@
 //picture gallery styles
 .picture {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 300px;
   object-fit: cover;
-  margin: 10px;
   transition: all 0.5s;
   &:hover {
     transform: scale(110%);
@@ -11,9 +12,17 @@
 }
 
 .gallery {
+  --width: 20vw;
+  --height: calc(var(--width) * 0.8);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
+  gap: calc(var(--height) * 0.05);
+  grid-template-columns: repeat(3, var(--width));
+  grid-auto-rows: var(--height);
+  max-width: 100%;
+}
+
+.gallery > * {
+  aspect-ratio: 1;
 }
 
 .modal {
@@ -57,4 +66,34 @@
 
 .invisible {
   opacity: 0;
+}
+
+//for mobile devices
+@media only screen and (max-width: 1200px) and (orientation: "portrait") {
+  .gallery {
+    --width: 30vw;
+  }
+  .modal-image {
+    z-index: 110;
+    aspect-ratio: auto;
+    width: clamp(0px, 80%, 100%);
+    height: auto;
+  }
+
+  .modal-image-fullscreen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: auto;
+    height: auto;
+  }
+}
+
+@media only screen and (max-height: 700px) and (orientation: "landscape") {
+  .modal-image {
+    position: fixed;
+    top: 0;
+    height: 110vh;
+    aspect-ratio: auto;
+    z-index: 110;
+  }
 }

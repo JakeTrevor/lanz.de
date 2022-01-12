@@ -1,9 +1,5 @@
 @use "reset";
-
-// temporary style, should be deleted before deployment.
-.largeDiv {
-  height: 100vh;
-}
+@use "header";
 
 h3 {
   font-family: "Poppins";
@@ -14,7 +10,7 @@ h3 {
   letter-spacing: 0px;
   text-transform: none;
   color: #181818;
-  margin: 100px;
+  margin: 100px 0;
 }
 
 h4 {
@@ -96,13 +92,13 @@ video {
 }
 
 div#introduction {
-  margin: 100px 0;
+  margin: 100px 0 0;
   justify-content: center;
   align-items: center;
 }
 
 #Willkommen {
-  margin-top: 0;
+  margin: 0;
 }
 
 #name {
@@ -154,6 +150,8 @@ p#introduction {
 
 #portrait {
   margin: 16px 0 50px;
+  aspect-ratio: auto;
+  width: 100%;
 }
 
 .spacedText {
@@ -167,6 +165,7 @@ p#introduction {
 }
 
 .half {
+  padding: 0 10px;
   width: 50%;
   justify-content: end;
   font-size: 18px;
@@ -180,5 +179,24 @@ p#introduction {
     margin: 58px 0;
     font-weight: normal;
     text-decoration: underline;
+  }
+}
+
+//for mobile devices:
+@media only screen and (max-width: 1200px) and (orientation: "portrait") {
+  p#introduction {
+    padding: 0;
+  }
+  h3 {
+    margin: 50px 0;
+  }
+
+  .half {
+    width: 100%;
+    span,
+    h2,
+    strong {
+      text-align: left;
+    }
   }
 }
