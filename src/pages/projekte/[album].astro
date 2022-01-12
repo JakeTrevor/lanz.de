@@ -1,11 +1,15 @@
 ---
 //component imports
 import Header from "../../components/Header.astro"
+import Footer from "../../components/Footer.astro"
 import Metahead from "../../components/Metahead.astro"
+import PictureGallery from "../../components/PictureGallery.tsx"
 
 //build-specific frontmatter
 import * as fs from "fs";
 
+//todo refactor all getX methods into a separate file for ease of access and sharing functions
+//!needs to check if an album is empty
 export async function getStaticPaths(){
   let albums = fs.readdirSync(import.meta.env.PUBLIC_ALBUMS);
 
@@ -29,7 +33,7 @@ function getImages(){
   return images.map(picture => albumPath + "/" + picture)
 }
 
-const imagePaths = getImages()
+const imagePaths:string[] = getImages()
 ---
 
 <html lang="en">
@@ -38,10 +42,25 @@ const imagePaths = getImages()
   </head>
   <body>
     <Header/>
-    <h1>this is an album!</h1>
-    <h2>specifically: {album}</h2>
-    <div class="gallery">
-      {imagePaths.map(path => <img src={path} class="picture" />)}
+    <section>
+    <h1>{album}!</h1>
+    <div class="split">
+      <div class="large-half">
+        <p>Description ------------
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      </div>
+      <div class="smaller-half">
+      <h3>Location</h3>
+      <p>location</p>
+      <h3>Zeitraum (date)</h3>
+      <p>now!</p>
+      </div>
     </div>
+    <!-- <div class="gallery">
+      {imagePaths.map(path => <img src={path} class="picture" />)}
+    </div> -->
+    <PictureGallery client:load pictures={imagePaths}/>
+    </section>
+    <Footer />
   </body>
 </html>
