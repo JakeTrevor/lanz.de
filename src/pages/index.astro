@@ -1,8 +1,47 @@
 ---
 import Metahead from "../components/Metahead.astro"
 import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
 import Slideshow from "../components/Slideshow.tsx"
 import PictureLinkGallery from "../components/PictureLinkGallery.astro"
+
+import * as fs from "fs";
+function getFrontPageSlides():string[] {
+  let location = import.meta.env.PUBLIC_FRONT_PAGE_SLIDES
+
+  let slides = fs.readdirSync(location);
+  
+  location = location.slice(1)
+  slides = slides.map(each => location + "/" + each)
+  
+  return slides
+}
+
+function getMidpagePictures():string[] {
+  let location = import.meta.env.PUBLIC_MIDPAGE_PICTURES
+  let slides = fs.readdirSync(location);
+  
+  location = location.slice(1)
+  slides = slides.map(each => location + "/" + each)
+  
+  return slides
+}
+
+function getLanzLiveSlides():string[] {
+  let location = import.meta.env.PUBLIC_LANZ_LIVE_SLIDES
+
+  let slides = fs.readdirSync(location);
+  
+  location = location.slice(1)
+  slides = slides.map(each => location + "/" + each)
+  
+  return slides
+}
+
+
+let frontPageSlides:string[] = getFrontPageSlides()
+let midpagePictures:string[] = getMidpagePictures()
+let lanzLiveSlides:string[] = getLanzLiveSlides()
 ---
 <html lang="en">
   <head>
@@ -12,8 +51,8 @@ import PictureLinkGallery from "../components/PictureLinkGallery.astro"
     <Header/>
     <section class="section" id="Willkommen">
       <div class="slider">
-        <Slideshow client:load time={3000} slides={["/public/slider3.jpg", "/public/slider-dunkel.jpg"]}></Slideshow>
-        <img src="/public/Autogramm_Lanz_Markus.png" alt="..." class="autograph">
+        <Slideshow client:load time={3000} slides={frontPageSlides}/>
+        <img src="public/Autogramm.png" alt="..." class="autograph">
       </div>
         
       <div id="introduction">
@@ -30,7 +69,7 @@ import PictureLinkGallery from "../components/PictureLinkGallery.astro"
 
         <h3>Aktuelles</h3>
         <a href="https://www.zdf.de/gesellschaft/markus-lanz" target="_blank">
-          <img src="/public/ZDF_Cornerlogo.png"/>
+          <img src="public/ZDF_Cornerlogo.png"/>
         </a>
         <h4>"LANZ & PRECHT" – Der Podcast</h4>
         <p>
@@ -45,7 +84,7 @@ import PictureLinkGallery from "../components/PictureLinkGallery.astro"
         </p>
         <img class="bird" src="https://markuslanz.de/wp-content/uploads/2021/11/Greifvogel-2-1536x1024.jpg" />
         <a href="https://www.zdf.de/gesellschaft/markus-lanz" target="_blank">
-          <img src="/public/ZDF_Cornerlogo.png"/>
+          <img src="public/ZDF_Cornerlogo.png"/>
         </a>
         <h4>“Markus Lanz” – Talkshow</h4>
         <p><strong>
@@ -74,28 +113,32 @@ import PictureLinkGallery from "../components/PictureLinkGallery.astro"
     </section>
     <section class="section" id="Lanz-Live">
       <h3>Vorträge und Moderation</h3>
-      <p>slideshow here.</p>
+      <div class="slider" id="lanz-live-slider">
+        <Slideshow client:load time={3000} slides={lanzLiveSlides}/>
+      </div>
       <h4 class="strong">Multivisionsvortrag</h4>
-      <h4>“Grönland – meine Reisen ans Ende der Welt”</h4>
+      <h4 id="header-with-space">“Grönland – meine Reisen ans Ende der Welt”</h4>
       <h4 class="strong">Trailer:</h4>
-      <p>video here</p>
+      <video controls poster="public/trailer_poster.jpg">
+        <source type="video/mp4" src="public/trailer.mp4"/>
+      </video>
     </section>
     <section class="section" id="Kontakt">
-      <h3>Kontakt</h3>
+      <h3 id="Kontakt">Kontakt Management</h3>
       <div class="greyArea">
         <div class="half">
-          <img id="portrait" src="/portrait.jpg" />
+          <img id="portrait" src="public/portrait.jpg" />
           <span>Anfragen für Moderationen, Multivisionsvorträge,</span>
           <span>Keynote Speeches oder Presse an:</span>
           <h2>info@markuslanz.de</h2>
-          <span>Kontakt:</span>
-          <strong>Büro Markus Lanz</strong>
-          <span>c/o Lucas Raßbach</span>
+          <span class="spacedText">Kontakt:</span>
+          <strong class="spacedText">Büro Markus Lanz</strong>
+          <span class="spacedText">c/o Lucas Raßbach</span>
         </div>
       </div>
     </section>
     <div class="footer">
-    <div class="largeDiv">this is the footer...</div>
+      <Footer/>
     </div>
   </body>
 </html>
