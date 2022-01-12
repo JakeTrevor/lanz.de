@@ -29,7 +29,7 @@ function getImages(){
   let albumPath = import.meta.env.PUBLIC_ALBUMS + "/" + album;
   let images = fs.readdirSync(albumPath);
 
-  albumPath = albumPath.slice(1)
+  albumPath = albumPath.slice(8)
   return images.map(picture => albumPath + "/" + picture)
 }
 
