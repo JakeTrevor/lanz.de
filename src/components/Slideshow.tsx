@@ -26,8 +26,8 @@ let Slideshow: FC<slideshowProps> = ({ slides, time }) => {
 
   return (
     <>
-      <img className={"slide slide-" + tracker} src={slides[indexA]} />
-      <img className={"slide slide-" + !tracker} src={slides[indexB]} />
+      <img className={"slide slide-" + !tracker} src={slides[indexA]} />
+      <img className={"slide slide-" + tracker} src={slides[indexB]} />
     </>
   );
 };
