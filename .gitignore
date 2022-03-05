@@ -22,3 +22,6 @@ public
 .firebase
 .firebaserc
 firebase.json
+
+#ignore config
+cosmosConfig.ts
