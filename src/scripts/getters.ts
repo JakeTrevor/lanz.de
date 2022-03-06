@@ -16,7 +16,9 @@ function upload(newItem: { name: string }) {
 //?of what?
 async function query(sqlQuery: string) {
   const querySpec = { query: sqlQuery };
-  return await container.items.query(querySpec).fetchAll();
+  return await (
+    await container.items.query(querySpec).fetchAll()
+  ).resources;
 }
 
 //give this the item you wish to delete (like as a jason)
@@ -25,3 +27,7 @@ function deleteItem(item: string) {
 }
 
 export { upload, query, deleteItem };
+
+query("SELECT * FROM pictures").then((e) => {
+  console.log(e);
+});
