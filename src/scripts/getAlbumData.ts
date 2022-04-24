@@ -1,21 +1,42 @@
 import * as fs from "fs";
+import { query } from "./getters";
 
-export function getAlbumImages(album: string) {
+// ! this should work, but i can't test without database population
+export async function getAlbumImages(
+  album: string
+): Promise<photoDisplayData[]> {
+  let q = `
+  SELECT *
+  FROM pictures
+  WHERE pictures.type = "photoData" AND pictures.album="${album}"
+  `;
+
+  let result = await query(q);
+  // @ts-ignore
+  // return result
+
+  // old placeholder code:
   let albumPath = import.meta.env.PUBLIC_ALBUMS + "/" + album;
   let images = fs.readdirSync(albumPath);
+  let caption = "this is the caption";
 
   albumPath = albumPath.slice(8);
-  return images.map((picture) => albumPath + "/" + picture);
+  return images.map((picture) => {
+    return { href: albumPath + "/" + picture, caption: caption };
+  });
 }
 
-export function getAlbumMetadata(album: string): albumMetadata {
-  const description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+// * done
+export async function getAlbumMetadata(
+  album: string
+): Promise<albumDisplayData> {
+  let q = `
+  SELECT * 
+  FROM pictures 
+  WHERE pictures.type = "albumData" AND pictures.name="${album}"
+  `;
 
-  return {
-    name: "not defined",
-    description: description,
-    location: "here",
-    date: "yesterday",
-  };
+  let result = await query(q);
+  // @ts-ignore
+  return result[0];
 }

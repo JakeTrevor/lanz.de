@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import Modal from "./Modal";
 
 interface PictureGalleryProps {
-  pictures: string[];
+  pictures: photoDisplayData[];
 }
 
 let PictureGallery: FC<PictureGalleryProps> = ({ pictures }) => {
@@ -13,9 +13,15 @@ let PictureGallery: FC<PictureGalleryProps> = ({ pictures }) => {
       <img
         key={id}
         className="picture"
-        src={each}
+        src={each.href}
         onClick={() =>
-          setModal(<Modal src={each} reset={() => setModal(<div />)} />)
+          setModal(
+            <Modal
+              src={each.href}
+              caption={each.caption}
+              reset={() => setModal(<div />)}
+            />
+          )
         }
       />
     );

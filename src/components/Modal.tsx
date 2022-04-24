@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 
 interface modalProps {
   src: string;
-  caption?: string;
+  caption: string;
   reset: any;
 }
 
@@ -26,7 +26,7 @@ let Modal: FC<modalProps> = ({ src, reset, caption }) => {
         className={fullscreen ? "modal-image-fullscreen" : "modal-image"}
         onClick={() => setFullscreen(!fullscreen)}
       />
-      <p>caption goes here{caption}</p>
+      <p>caption goes here: {caption}</p>
       <button onClick={close}>close</button>
     </div>
   );

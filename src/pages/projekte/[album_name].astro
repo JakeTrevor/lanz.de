@@ -6,11 +6,11 @@ import Metahead from "../../components/Metahead.astro"
 import PictureGallery from "../../components/PictureGallery.tsx"
 
 // db getter imports
-import {getAlbumList} from "../../scripts/getSiteData.ts"
+import {getAlbumNameList} from "../../scripts/getSiteData.ts"
 import { getAlbumImages, getAlbumMetadata } from "../../scripts/getAlbumData.ts"
 
 export async function getStaticPaths() {
-  let albums = await getAlbumList();
+  let albums = await getAlbumNameList();
   let wrapped = albums.map((item) => {
     return { params: { album_name: item } };
   });
@@ -19,9 +19,9 @@ export async function getStaticPaths() {
 
 const album_name = String(Astro.params.album_name);
 
-const imagePaths = getAlbumImages(album_name)
+const imagePaths:photoDisplayData[] = await getAlbumImages(album_name)
 
-const {description, location, date } = getAlbumMetadata(album_name) 
+const {description, location, date } = await getAlbumMetadata(album_name) 
 ---
 
 <html lang="en">
