@@ -5,43 +5,11 @@ import Footer from "../components/Footer.astro"
 import Slideshow from "../components/Slideshow.tsx"
 import PictureLinkGallery from "../components/PictureLinkGallery.astro"
 
-import * as fs from "fs";
-function getFrontPageSlides():string[] {
-  let location = import.meta.env.PUBLIC_FRONT_PAGE_SLIDES
+import * as sliders from "../scripts/getSlidshowPics.ts"
 
-  let slides = fs.readdirSync(location);
-  
-  location = location.slice(8)
-  slides = slides.map(each => location + "/" + each)
-  
-  return slides
-}
-
-function getMidpagePictures():string[] {
-  let location = import.meta.env.PUBLIC_MIDPAGE_PICTURES
-  let slides = fs.readdirSync(location);
-  
-  location = location.slice(8)
-  slides = slides.map(each => location + "/" + each)
-  
-  return slides
-}
-
-function getLanzLiveSlides():string[] {
-  let location = import.meta.env.PUBLIC_LANZ_LIVE_SLIDES
-
-  let slides = fs.readdirSync(location);
-  
-  location = location.slice(8)
-  slides = slides.map(each => location + "/" + each)
-  
-  return slides
-}
-
-
-let frontPageSlides:string[] = getFrontPageSlides()
-let midpagePictures:string[] = getMidpagePictures()
-let lanzLiveSlides:string[] = getLanzLiveSlides()
+let slideshow1Pics:string[] = sliders.getSlot1()
+let slideshow2Pics:string[] = sliders.getSlot2()
+let slideshow3Pics:string[] = sliders.getSlot3()
 ---
 <html lang="en">
   <head>
@@ -51,7 +19,7 @@ let lanzLiveSlides:string[] = getLanzLiveSlides()
     <Header client:load/>
     <section class="section" id="Willkommen">
       <div class="slider">
-        <Slideshow client:load time={3000} slides={frontPageSlides}/>
+        <Slideshow client:load time={3000} slides={slideshow1Pics}/>
         <img src="/Autogramm.png" alt="..." class="autograph">
       </div>
         
@@ -114,7 +82,7 @@ let lanzLiveSlides:string[] = getLanzLiveSlides()
     <section class="section" id="Lanz-Live">
       <h3>Vorträge und Moderation</h3>
       <div class="slider" id="lanz-live-slider">
-        <Slideshow client:load time={3000} slides={lanzLiveSlides}/>
+        <Slideshow client:load time={3000} slides={slideshow3Pics}/>
       </div>
       <h4 class="strong">Multivisionsvortrag</h4>
       <h4 id="header-with-space">“Grönland – meine Reisen ans Ende der Welt”</h4>

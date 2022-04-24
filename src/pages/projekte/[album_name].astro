@@ -1,0 +1,50 @@
+---
+// component imports
+import Header from "../../components/Header.tsx"
+import Footer from "../../components/Footer.astro"
+import Metahead from "../../components/Metahead.astro"
+import PictureGallery from "../../components/PictureGallery.tsx"
+
+// db getter imports
+import {getAlbumList} from "../../scripts/getSiteData.ts"
+import { getAlbumImages, getAlbumMetadata } from "../../scripts/getAlbumData.ts"
+
+export async function getStaticPaths() {
+  let albums = await getAlbumList();
+  let wrapped = albums.map((item) => {
+    return { params: { album_name: item } };
+  });
+  return wrapped;
+}
+
+const album_name = String(Astro.params.album_name);
+
+const imagePaths = getAlbumImages(album_name)
+
+const {description, location, date } = getAlbumMetadata(album_name) 
+---
+
+<html lang="en">
+  <head>
+    <Metahead title ={album_name.toUpperCase() + " - Markus Lanz"} styles="/src/styles/album.scss"/>
+  </head>
+  <body>
+    <Header client:load />
+    <section>
+    <h1>{album_name}</h1>
+    <div class="split">
+      <div>
+        <p>{description}</p>
+      </div>
+      <aside>
+        <h3>Location</h3>
+        <p>{ location }</p>
+        <h3>Zeitraum (date)</h3>
+        <p>{ date }</p>
+      </aside>
+    </div>
+    <PictureGallery client:load pictures={imagePaths}/>
+    </section>
+    <Footer />
+  </body>
+</html>

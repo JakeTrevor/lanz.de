@@ -7,22 +7,24 @@ interface PictureGalleryProps {
 
 let PictureGallery: FC<PictureGalleryProps> = ({ pictures }) => {
   let [modal, setModal] = useState(<div />);
+
+  let a = pictures.map((each, id) => {
+    return (
+      <img
+        key={id}
+        className="picture"
+        src={each}
+        onClick={() =>
+          setModal(<Modal src={each} reset={() => setModal(<div />)} />)
+        }
+      />
+    );
+  });
+
   return (
     <>
       {modal}
-      <div className="gallery">
-        {pictures.map((each) => {
-          return (
-            <img
-              className="picture"
-              src={each}
-              onClick={() =>
-                setModal(<Modal src={each} reset={() => setModal(<div />)} />)
-              }
-            />
-          );
-        })}
-      </div>
+      <div className="gallery">{a}</div>
     </>
   );
 };

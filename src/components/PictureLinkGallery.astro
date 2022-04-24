@@ -1,31 +1,7 @@
 ---
-import * as fs from "fs";
+import { getAlbumLinks } from '../scripts/getSiteData';
 
-interface albumLink {
-  img: string; //url for image to be displayed.
-  destination: string; //href for the actual link.
-  tooltip: string;
-}
-
-function getLinks(): albumLink[] {
-  let location = import.meta.env.PUBLIC_ALBUMS;
-  let albums = fs.readdirSync(location);
-
-  return albums.map(album =>{
-    let albumPath = location + "/" + album;
-    
-    let img = fs.readdirSync(albumPath)[0]
-    albumPath = albumPath.slice(8) 
-    img = albumPath+ "/" + img
-
-    let destination = "/projekte/"+ album;
-    let tooltip = "please define the format for this";
-    
-    return {img, destination, tooltip}
-  })
-}
-
-const links: albumLink[] = getLinks()
+const links = getAlbumLinks()
 ---
 
 <div class="linkGallery">

@@ -43,14 +43,13 @@ h3 {
   text-transform: capitalize;
 }
 
+aside {
+  width: 20%;
+  margin-left: 20px;
+}
 .split {
   display: flex;
   flex-direction: row;
-}
-
-.smaller-half {
-  width: 20%;
-  margin-left: 20px;
 }
 
 //for mobile devices:
