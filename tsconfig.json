@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "moduleResolution": "Node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "esnext",
+    "types": ["vite/client"]
   }
 }
